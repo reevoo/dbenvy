@@ -1,7 +1,15 @@
+PATH
+  remote: .
+  specs:
+    dbenvy (0.0.1)
+      rack
+
 GEM
+  remote: https://rubygems.org/
   specs:
     diff-lcs (1.2.5)
     rack (1.5.2)
+    rake (10.4.2)
     rspec (3.1.0)
       rspec-core (~> 3.1.0)
       rspec-expectations (~> 3.1.0)
@@ -19,5 +27,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  rack
+  bundler (~> 1.7)
+  dbenvy!
+  rake (~> 10.0)
   rspec
