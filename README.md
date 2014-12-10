@@ -1,4 +1,4 @@
-# Dbenvy
+# DBEnvy
 
 Load DB info from the environment
 
