@@ -16,11 +16,15 @@ And then execute:
 
 ## Usage
 
-Add the following to your database.yml file and set the DATABASE_URL environment variable
+Add the following to your database.yml file and set the DATABASE_URL environment variable.
 
 ```
-<% DBEnvy.yaml %>
+<%= DBEnvy.yaml %>
 ```
+
+## Note
+
+You do not need this in a Rails 4.1 app as loading database info from DATABASE_URL is supported out of the box
 
 ## Contributing
 
