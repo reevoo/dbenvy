@@ -56,6 +56,42 @@ describe DBEnvy do
       end
     end
 
+    context 'when RAILS_ENV is not set but Rails.env is avaliable' do
+      module Rails
+        extend self
+
+        def env
+          nil
+        end
+      end
+
+      context 'uses RAILS_ENV if it can' do
+        before do
+          ENV['DATABASE_URL'] = 'mysql2://reevoo:secret@db456.reevoover.com:3306/reevoo_awesome'
+          ENV['RAILS_ENV'] = 'ENV'
+          allow(Rails).to receive(:env).and_return('env')
+        end
+
+        specify do
+          expect(YAML.load(yaml)['ENV']).to_not be_nil
+          expect(YAML.load(yaml)['env']).to be_nil
+        end
+      end
+
+      context 'uses Rails.env if RAILS_ENV is not set' do
+        before do
+          ENV['DATABASE_URL'] = 'mysql2://reevoo:secret@db456.reevoover.com:3306/reevoo_awesome'
+          ENV['RAILS_ENV'] = nil
+          allow(Rails).to receive(:env).and_return('env')
+        end
+
+        specify do
+          expect(YAML.load(yaml)['ENV']).to be_nil
+          expect(YAML.load(yaml)['env']).to_not be_nil
+        end
+      end
+    end
+
     context 'when RAILS_ENV is set' do
       before do
         ENV['RAILS_ENV'] = 'production'

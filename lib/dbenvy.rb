@@ -29,7 +29,7 @@ class DBEnvy
   private
 
   def rails_env
-    ENV['RAILS_ENV']
+    ENV['RAILS_ENV'] || Rails.env if defined?(Rails)
   end
 
   def credentials
